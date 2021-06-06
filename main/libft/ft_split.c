@@ -1,0 +1,101 @@
+#include "libft.h"
+
+char	**ft_malloc_error(char **tab)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	return (NULL);
+}
+
+unsigned int	ft_get_cnt(char const *s, char c)
+{
+	unsigned int	i;
+	unsigned int	cnt;
+
+	if (!s[0])
+		return (0);
+	i = 0;
+	cnt = 0;
+	while (s[i] && s[i] == c)
+		i++;
+	while (s[i])
+	{
+		if (s[i] == c)
+		{
+			cnt++;
+			while (s[i] && s[i] == c)
+				i++;
+			continue;
+		}
+		i++;
+	}
+	if (s[i - 1] != c)
+		cnt++;
+	return (cnt);
+}
+
+void	ft_get_next(char **next, unsigned int *next_len, char c)
+{
+	unsigned int	i;
+
+	*next += *next_len;
+	*next_len = 0;
+	i = 0;
+	while (**next && **next == c)
+		(*next)++;
+	while ((*next)[i])
+	{
+		if ((*next)[i] == c)
+			return ;
+		(*next_len)++;
+		i++;
+	}
+}
+
+char	**ft_split(char const *s, char c)
+{
+	unsigned int	i;
+	unsigned int	len;
+	unsigned int	cnt;
+	char			**tab;
+	char			*next;
+
+	i = -1;
+	if (!s)
+		return (NULL);
+	cnt = ft_get_cnt(s, c);
+	if (!(tab = (char **)malloc(sizeof(char *) * (cnt + 1))))
+		return (NULL);
+	next = (char *)s;
+	len = 0;
+	while (++i < cnt)
+	{
+		ft_get_next(&next, &len, c);
+		if (!(tab[i] = (char *)malloc(sizeof(char) * (len + 1))))
+			return (ft_malloc_error(tab));
+		ft_strlcpy(tab[i], next, len + 1);
+	}
+	tab[i] = NULL;
+	return (tab);
+}
+
+int main()
+{
+	char	**tab;
+	unsigned int	i;
+
+	i =  0;
+	tab = ft_split("abab abab", ' ');
+	while (tab[i] != NULL)
+	{
+		printf("%s\n", tab[i]);
+		i++;
+	}
+}
