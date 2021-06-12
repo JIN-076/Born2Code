@@ -6,13 +6,13 @@
 /*   By: jhong <jhong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 14:47:58 by jhong             #+#    #+#             */
-/*   Updated: 2021/06/05 17:58:38 by jhong            ###   ########.fr       */
+/*   Updated: 2021/06/09 16:06:37 by jhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	ft_malloc_error(char **tab)
+char			**ft_malloc_error(char **tab)
 {
 	unsigned int	i;
 
@@ -53,7 +53,7 @@ unsigned int	ft_get_cnt(char const *s, char c)
 	return (cnt);
 }
 
-void	ft_get_next(char **next, unsigned int *next_len, char c)
+void			ft_get_next(char **next, unsigned int *next_len, char c)
 {
 	unsigned int	i;
 
@@ -71,7 +71,7 @@ void	ft_get_next(char **next, unsigned int *next_len, char c)
 	}
 }
 
-char	**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	unsigned int	i;
 	unsigned int	len;

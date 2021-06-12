@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhong <jhong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/05 14:47:58 by jhong             #+#    #+#             */
-/*   Updated: 2021/06/05 17:37:08 by jhong            ###   ########.fr       */
+/*   Created: 2021/05/14 19:54:00 by jhong             #+#    #+#             */
+/*   Updated: 2021/06/10 15:10:09 by jhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen(const char *str)
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int		i;
-	int		cnt;
+	size_t	i;
+	size_t	tmp;
 
-	i = -1;
-	cnt = 0;
-	while (str[++i] != '\0')
-		cnt++;
-	return (cnt);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	if (!s || fd < 0)
-		return ;
-	write(fd, s, ft_strlen(s));
+	i = 0;
+	tmp = ft_strlen(src);
+	if (!dst || !src)
+		return (0);
+	while (i < tmp && i + 1 < dstsize)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (dstsize > 0)
+		dst[i] = '\0';
+	return (tmp);
 }

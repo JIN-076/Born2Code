@@ -1,44 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhong <jhong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 20:49:52 by jhong             #+#    #+#             */
-/*   Updated: 2021/06/05 13:58:28 by jhong            ###   ########.fr       */
+/*   Created: 2021/06/05 13:41:20 by jhong             #+#    #+#             */
+/*   Updated: 2021/06/10 19:49:43 by jhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memset(void *b, int c, size_t len)
+int			ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	j;
+	size_t			i;
+	unsigned char	*tmp1;
+	unsigned char	*tmp2;
 
-	j = -1;
-	while (++j < len)
-		*((char *)b + j) = c;
-	return (b);
-}
-
-void		ft_bzero(void *dest, size_t len)
-{
-	ft_memset(dest, 0, len);
-}
-
-void		*calloc(size_t count, size_t size)
-{
-	void *ptr;
-
-	if (count == 0 || size == 0) {
-		count = 1;
-		size = 1;
+	i = -1;
+	tmp1 = (unsigned char *)s1;
+	tmp2 = (unsigned char *)s2;
+	while (++i < n) {
+		if (tmp1[i] != tmp2[i])
+			return (tmp1[i] - tmp2[i]);
 	}
-
-	ptr = malloc(count * size);
-	if (ptr)
-		ft_bzero(ptr, count * size);
-
-	return (ptr);
+	return (0);
 }

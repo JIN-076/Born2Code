@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhong <jhong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 20:03:13 by jhong             #+#    #+#             */
-/*   Updated: 2021/06/05 14:25:42 by jhong            ###   ########.fr       */
+/*   Created: 2021/06/05 13:41:54 by jhong             #+#    #+#             */
+/*   Updated: 2021/06/10 19:50:38 by jhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strchr(const char *s, int c)
+char		*ft_strrchr(const char *s, int c)
 {
-	int		i;
-	char	tmp;
-	char	*stmp;
+	char	*ptr;
+	char	find;
+	size_t	s_len;
 
-	i = 0;
-	tmp = (char)c;
-	stmp = (char *)s;
-	while (stmp[i] != tmp)
+	ptr = (char *)s;
+	find = (char)c;
+	s_len = ft_strlen(s);
+
+	while (s_len > 0)
 	{
-		if (stmp[i] == '\0')
-			return (NULL);
-		i++;
+		if (ptr[s_len] == c)
+			return (ptr + s_len);
+		s_len--;
 	}
-	return (&stmp[i]);
+	if (ptr[s_len] == find)
+		return (ptr);
+	return (0);
 }

@@ -9,7 +9,7 @@ char			*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int				ft_strncmp(char *s1, char *s2, unsigned int n);
 size_t			ft_strlen(const char *str);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size);
+unsigned int	ft_strlcat(char *dest, const char *src, unsigned int size);
 char			*ft_strdup(const char *src);
 char			*ft_strchr(const char *s, int c);
 void			*ft_memset(void *b, int c, size_t len);
@@ -26,3 +26,5 @@ int				ft_isalnum(int c);
 void			*calloc(size_t count, size_t size);
 void			ft_bzero(void *dest, size_t len);
 int				ft_atoi(const char *str);
+
+char			*ft_strjoin(char const *s1, char const *s2);

@@ -6,7 +6,7 @@
 /*   By: jhong <jhong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:07:29 by jhong             #+#    #+#             */
-/*   Updated: 2021/06/05 14:11:47 by jhong            ###   ########.fr       */
+/*   Updated: 2021/06/10 14:42:31 by jhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,22 @@
 
 char		*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	i;
-	size_t	tmp;
+	size_t	hay_len;
+	size_t	ned_len;
+	size_t	size;
 
-	i = -1;
-	while (haystack[i] && ++i < len)
+	if (*needle == '\0')
+		return ((char *)haystack);
+	hay_len = ft_strlen(haystack);
+	ned_len = ft_strlen(needle);
+	if (hay_len < ned_len || len < ned_len)
+		return (0);
+	size = hay_len > len ? len : hay_len;
+	while (size-- >= ned_len)
 	{
-		tmp = 0;
-		if (needle[tmp] == haystack[i + tmp])
-		{
-			while (needle[tmp] && haystack[i + tmp])
-			{
-				if (needle[tmp] != haystack[i + tmp] || (i + tmp) >= len)
-					break;
-				tmp++;
-			}
-			if (needle[tmp] == '\0')
-				return (&((char *)haystack)[i]);
-		}
+		if (ft_memcmp(haystack, needle, ned_len) == 0)
+			return ((char *)haystack);
+		haystack++;
 	}
-	return ((void*)0);
+	return (0);
 }

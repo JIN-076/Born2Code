@@ -1,43 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhong <jhong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 14:47:58 by jhong             #+#    #+#             */
-/*   Updated: 2021/06/05 16:51:45 by jhong            ###   ########.fr       */
+/*   Updated: 2021/06/10 19:50:49 by jhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen(const char *str)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		i;
-	int		cnt;
-
-	i = -1;
-	cnt = 0;
-	while (str[++i] != '\0')
-		cnt++;
-	return (cnt);
-}
-
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
-{
-	size_t	len;
-	size_t	i;
+	size_t	start;
+	size_t	end;
 	char	*tmp;
 
-	i = -1;
-	if (!s || !f)
-		return (0);
-	len = ft_strlen(s);
-	if (!(tmp = (char *)malloc(sizeof(char) * len + 1)))
-		return (0);
-	while (++i < len)
-		tmp[i] = f(i, s[i]);
-	tmp[i] = 0;
+	if (!s1)
+		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
+	start = 0;
+	end = ft_strlen(s1);
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	while (s1[end - 1] && ft_strchr(set, s1[end - 1]))
+	{
+		if (end - 1 < 1)
+			break;
+		end--;
+	}
+	if (start > end)
+		return (ft_strdup(""));
+	if (!(tmp = (char *)malloc(sizeof(char) * (end - start + 1))))
+		return (NULL);
+	ft_strlcpy(tmp, s1 + start, end - start + 1);
 	return (tmp);
 }
