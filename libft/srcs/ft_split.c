@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhong <jhong@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jhong <jhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 14:47:58 by jhong             #+#    #+#             */
-/*   Updated: 2021/06/09 16:06:37 by jhong            ###   ########.fr       */
+/*   Updated: 2021/06/12 16:24:32 by jhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,4 @@ char			**ft_split(char const *s, char c)
 	}
 	tab[i] = NULL;
 	return (tab);
-
 }

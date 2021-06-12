@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhong <jhong@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jhong <jhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 14:47:47 by jhong             #+#    #+#             */
-/*   Updated: 2021/06/05 16:45:14 by jhong            ###   ########.fr       */
+/*   Updated: 2021/06/12 16:23:27 by jhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		get_len(int n)
+int				get_len(int n)
 {
 	int			len;
+
 	len = (n <= 0) ? 1 : 0;
 	while (n)
 	{
@@ -22,10 +23,9 @@ int		get_len(int n)
 		len++;
 	}
 	return (len);
-
 }
 
-char	*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	int			len;
 	int			sign;

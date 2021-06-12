@@ -3,28 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhong <jhong@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jhong <jhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 13:40:15 by jhong             #+#    #+#             */
-/*   Updated: 2021/06/10 15:23:07 by jhong            ###   ########.fr       */
+/*   Updated: 2021/06/12 16:59:16 by jhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
+#ifndef LIBFT_H
+# define LIBFT_H
 
-typedef struct s_list
+# include <stdlib.h>
+# include <unistd.h>
+
+typedef struct	s_list
 {
 	void			*content;
-	struct	s_list	*next;
-}					t_list;
-
+	struct s_list	*next;
+}				t_list;
 
 int				ft_toupper(int c);
 int				ft_tolower(int c);
 char			*ft_strrchr(const char *s, int c);
-char			*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char			*ft_strnstr(const char *haystack, const char *needle, \
+															size_t len);
 int				ft_strncmp(char *s1, char *s2, unsigned int n);
 size_t			ft_strlen(const char *str);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -65,4 +67,7 @@ void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
+										void (*del)(void *));
+
+#endif

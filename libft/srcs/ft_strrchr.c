@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhong <jhong@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jhong <jhong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 13:41:54 by jhong             #+#    #+#             */
-/*   Updated: 2021/06/10 19:50:38 by jhong            ###   ########.fr       */
+/*   Updated: 2021/06/12 16:24:45 by jhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char		*ft_strrchr(const char *s, int c)
 	ptr = (char *)s;
 	find = (char)c;
 	s_len = ft_strlen(s);
-
 	while (s_len > 0)
 	{
 		if (ptr[s_len] == c)
