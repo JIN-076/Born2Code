@@ -14,9 +14,9 @@
 
 # define GET_NEXT_LINE_BONUS_H
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 

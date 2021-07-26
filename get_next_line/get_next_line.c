@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char		*get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static char		*buf[4096];
 	char			*line;
@@ -40,7 +40,7 @@ char		*get_next_line(int fd)
 	return (get_next_line(fd));
 }
 
-char		*gnl_shrink_buffer(char *buf, char *line)
+char	*gnl_shrink_buffer(char *buf, char *line)
 {
 	char		*new_buf;
 	int			line_len;
@@ -58,7 +58,7 @@ char		*gnl_shrink_buffer(char *buf, char *line)
 	return (new_buf);
 }
 
-char		*gnl_expand_buffer(char *buf, int fd)
+char	*gnl_expand_buffer(char *buf, int fd)
 {
 	char		*new_buf;
 	int			new_len;
@@ -85,7 +85,7 @@ char		*gnl_expand_buffer(char *buf, int fd)
 	return (new_buf);
 }
 
-char		*gnl_new_read(int fd)
+char	*gnl_new_read(int fd)
 {
 	char		*aux;
 	int			nbytes;
