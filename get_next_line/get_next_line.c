@@ -16,16 +16,16 @@ char	*get_next_line(int fd)
 {
 	static char		*buf[4096];
 	char			*line;
-	size_t			old_len;
+	size_t			prev_len;
 
 	if (fd < 0 || fd > 4096 || BUFFER_SIZE < 0)
 		return (NULL);
 	line = NULL;
 	if (gnl_strchr(buf[fd], '\n') == -1)
 	{
-		old_len = gnl_strlen(buf[fd]);
-		buf[fd] = gnl_expand_buffer(buf[fd], fd);
-		if (old_len == gnl_strlen(buf[fd]) && buf[fd])
+		prev_len = gnl_strlen(buf[fd]);
+		buf[fd] = insert_buffer(buf[fd], fd);
+		if (prev_len == gnl_strlen(buf[fd]) && buf[fd])
 			line = gnl_substr(buf[fd], 0, gnl_strlen(buf[fd]));
 	}
 	if (!buf[fd])
@@ -34,13 +34,13 @@ char	*get_next_line(int fd)
 		line = gnl_substr(buf[fd], 0, gnl_strchr(buf[fd], '\n') + 1);
 	if (line)
 	{
-		buf[fd] = gnl_shrink_buffer(buf[fd], line);
+		buf[fd] = delete_buffer(buf[fd], line);
 		return (line);
 	}
 	return (get_next_line(fd));
 }
 
-char	*gnl_shrink_buffer(char *buf, char *line)
+char	*delete_buffer(char *buf, char *line)
 {
 	char		*new_buf;
 	int			line_len;
@@ -58,47 +58,47 @@ char	*gnl_shrink_buffer(char *buf, char *line)
 	return (new_buf);
 }
 
-char	*gnl_expand_buffer(char *buf, int fd)
+char	*insert_buffer(char *buf, int fd)
 {
 	char		*new_buf;
 	int			new_len;
-	char		*aux;
+	char		*tmp;
 
-	aux = gnl_new_read(fd);
-	if (!aux)
+	tmp = new_read(fd);
+	if (!tmp)
 		return (NULL);
-	if (!aux[0])
+	if (!tmp[0])
 	{
-		free(aux);
+		free(tmp);
 		return (buf);
 	}
 	if (!buf)
-		return (aux);
-	new_len = gnl_strlen(buf) + gnl_strlen(aux);
+		return (tmp);
+	new_len = gnl_strlen(buf) + gnl_strlen(tmp);
 	new_buf = malloc(new_len + 1);
 	if (!new_buf)
 		return (NULL);
 	gnl_strlcpy(new_buf, buf, new_len + 1);
-	gnl_strlcat(new_buf, aux, new_len + 1);
+	gnl_strlcat(new_buf, tmp, new_len + 1);
 	free(buf);
-	free(aux);
+	free(tmp);
 	return (new_buf);
 }
 
-char	*gnl_new_read(int fd)
+char	*new_read(int fd)
 {
-	char		*aux;
+	char		*tmp;
 	int			nbytes;
 
-	aux = malloc(BUFFER_SIZE + 1);
-	if (!aux)
+	tmp = malloc(BUFFER_SIZE + 1);
+	if (!tmp)
 		return (NULL);
-	nbytes = read(fd, aux, BUFFER_SIZE);
+	nbytes = read(fd, tmp, BUFFER_SIZE);
 	if (nbytes < 0)
 	{
-		free(aux);
+		free(tmp);
 		return (NULL);
 	}
-	aux[nbytes] = '\0';
-	return (aux);
+	tmp[nbytes] = '\0';
+	return (tmp);
 }
