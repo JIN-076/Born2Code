@@ -46,7 +46,8 @@ char	*gnl_substr(char const *s, unsigned int start, size_t len)
 	new_len = gnl_strlen(s + start);
 	if (new_len < len)
 		len = new_len;
-	if (!(tmp = (char *)malloc(sizeof(char) * (len + 1))))
+	tmp = (char *)malloc(sizeof(char) * (len + 1));
+	if (!tmp)
 		return (NULL);
 	gnl_strlcpy(tmp, s + start, len + 1);
 	return (tmp);

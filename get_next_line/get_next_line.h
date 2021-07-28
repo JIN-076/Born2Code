@@ -6,7 +6,7 @@
 /*   By: jhong <jhong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 00:09:57 by jhong             #+#    #+#             */
-/*   Updated: 2021/07/26 19:18:41 by jhong            ###   ########.fr       */
+/*   Updated: 2021/07/28 22:32:04 by jhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 # define GET_NEXT_LINE_H
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 
@@ -32,8 +32,8 @@ size_t	gnl_strlcat(char *dst, const char *src, size_t size);
 int		gnl_strchr(const char *s, int c);
 char	*gnl_substr(char const *s, unsigned int start, size_t len);
 
-char	*shrink_buffer(char *buf, char *line);
-char	*expand_buffer(char *buf, int fd);
+char	*delete_buffer(char *buf, char *line);
+char	*insert_buffer(char *buf, int fd);
 char	*new_read(int fd);
 
 #endif
