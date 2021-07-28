@@ -6,7 +6,7 @@
 /*   By: jhong <jhong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 11:19:24 by jhong             #+#    #+#             */
-/*   Updated: 2021/07/26 18:12:30 by jhong            ###   ########.fr       */
+/*   Updated: 2021/07/26 19:20:06 by jhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char		*get_next_line(int fd)
 	if (gnl_strchr(buf[fd], '\n') == -1)
 	{
 		old_len = gnl_strlen(buf[fd]);
-		buf[fd] = gnl_expand_buffer(buf[fd], fd);
+		buf[fd] = expand_buffer(buf[fd], fd);
 		if (old_len == gnl_strlen(buf[fd]) && buf[fd])
 			line = gnl_substr(buf[fd], 0, gnl_strlen(buf[fd]));
 	}
@@ -34,13 +34,13 @@ char		*get_next_line(int fd)
 		line = gnl_substr(buf[fd], 0, gnl_strchr(buf[fd], '\n') + 1);
 	if (line)
 	{
-		buf[fd] = gnl_shrink_buffer(buf[fd], line);
+		buf[fd] = shrink_buffer(buf[fd], line);
 		return (line);
 	}
 	return (get_next_line(fd));
 }
 
-char		*gnl_shrink_buffer(char *buf, char *line)
+char		*shrink_buffer(char *buf, char *line)
 {
 	char		*new_buf;
 	int			line_len;
@@ -58,13 +58,13 @@ char		*gnl_shrink_buffer(char *buf, char *line)
 	return (new_buf);
 }
 
-char		*gnl_expand_buffer(char *buf, int fd)
+char		*expand_buffer(char *buf, int fd)
 {
 	char		*new_buf;
 	int			new_len;
 	char		*aux;
 
-	aux = gnl_new_read(fd);
+	aux = new_read(fd);
 	if (!aux)
 		return (NULL);
 	if (!aux[0])
@@ -85,7 +85,7 @@ char		*gnl_expand_buffer(char *buf, int fd)
 	return (new_buf);
 }
 
-char		*gnl_new_read(int fd)
+char		*new_read(int fd)
 {
 	char		*aux;
 	int			nbytes;
